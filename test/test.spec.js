@@ -23,13 +23,13 @@ describe("yaml parser test", () => {
 
   it("sub test", () =>
     Promise.all(yamls.map((yaml) =>
-      toPromise(fs.readFile, yaml).then((data) => {
-        const json = path.resolve(path.dirname(yaml), path.basename(yaml, '.yaml') + '.json')
-        return toPromise(fs.readFile, json).then((d) => {
-          const actual = parser.parse(data.toString()).value
-          const expected = JSON.parse(d.toString())
-          assert.deepEqual(actual, expected)
-        })
+      Promise.all([toPromise(fs.readFile, yaml),toPromise(fs.readFile, path.resolve(path.dirname(yaml), path.basename(yaml, '.yaml') + '.json'))])
+      .then((r) => {
+        const yaml=r[0]
+        const json=r[1]
+        const actual = parser.parse(yaml.toString()).value
+        const expected = JSON.parse(json.toString())
+        assert.deepEqual(actual, expected)
       })
     ))
   )
