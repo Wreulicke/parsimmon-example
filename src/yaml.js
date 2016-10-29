@@ -19,19 +19,6 @@ const yaml = (n) =>
     return res[arr.key] = arr.value, res
   }, {}))
 
-const parser = yaml(0)
+const parser = P.lazy(()=>yaml(0))
 
 module.exports = parser
-
-const str=[
-"aaa : bbb",
-"aaab : ccc",
-"bbb: sss",
-"ccc:",
-"  xxx:bbb",
-"  xxc:bbb",
-"  xxz:",
-"    xxx:bbb",
-"    xxc:bbb"
-].join("\r\n")
-console.log(JSON.stringify(parser.parse(str).value, null, 2))

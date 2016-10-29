@@ -2,13 +2,16 @@
   "name": "parsimmon-example",
   "version": "1.0.0",
   "main": "src/yaml.js",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "parsimmon": "^0.9.2"
+    "intelli-espower-loader": "^1.0.1",
+    "mocha": "^3.1.2",
+    "parsimmon": "^0.9.2",
+    "power-assert": "^1.4.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require intelli-espower-loader",
+    "watch": "mocha --watch --require intelli-espower-loader"
   },
   "author": "",
   "license": "MIT",
