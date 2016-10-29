@@ -1,0 +1,24 @@
+{
+  "name": "parsimmon-example",
+  "version": "1.0.0",
+  "main": "src/yaml.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "parsimmon": "^0.9.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wreulicke/parsimmon-example.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Wreulicke/parsimmon-example/issues"
+  },
+  "homepage": "https://github.com/Wreulicke/parsimmon-example#readme",
+  "description": ""
+}
