@@ -13,16 +13,15 @@ const toPromise=function(f){
 }
 describe("yaml parser test", () => {
   let yamls
-  before(function (done) {
-    yamls = []
+  before(()=>{
     const dir = './test/case'
-    toPromise(fs.readdir, dir).then(files=>{
+    return toPromise(fs.readdir,dir).then(files=>{
+      yamls = []
       files.filter((f) => path.basename(f, '.yaml').indexOf('.') === -1).forEach((f) => yamls.push(path.join(dir, f)))
-      done()
-    }).catch(done)
+    })
   })
-
-  it("sub test", (done)=>{
+  
+  it("sub test", ()=>
     Promise.all(yamls.map((yaml)=>
       toPromise(fs.readFile, yaml).then((data)=>{
         const json=path.resolve(path.dirname(yaml),path.basename(yaml,'.yaml')+'.json')
@@ -32,7 +31,6 @@ describe("yaml parser test", () => {
           assert.deepEqual(actual, expected)
         })
       })
-    )).then(()=>done()).catch(done)
-    
-  })
+    ))
+  )
 })
