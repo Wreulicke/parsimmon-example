@@ -23,10 +23,9 @@ describe("yaml parser test", () => {
 
   it("sub test", () =>
     Promise.all(yamls.map((yaml) =>
-      Promise.all([toPromise(fs.readFile, yaml),toPromise(fs.readFile, path.resolve(path.dirname(yaml), path.basename(yaml, '.yaml') + '.json'))])
+      Promise.all([toPromise(fs.readFile, yaml), toPromise(fs.readFile, path.resolve(path.dirname(yaml), path.basename(yaml, '.yaml') + '.json'))])
       .then((r) => {
-        const yaml=r[0]
-        const json=r[1]
+        const yaml = r[0], json = r[1]
         const actual = parser.parse(yaml.toString()).value
         const expected = JSON.parse(json.toString())
         assert.deepEqual(actual, expected)
