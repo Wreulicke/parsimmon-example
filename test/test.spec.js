@@ -31,9 +31,10 @@ describe("yaml parser test", () => {
     it(`test case : ${path.basename(yaml)}`, () =>
       all(toPromise(fs.readFile, yaml), toPromise(fs.readFile, getJson(yaml)))
       .then(flat((yaml, json) => {
-        const actual = parser.parse(yaml.toString()).value
+        const result= parser.parse(yaml.toString()),actual =result.value
         const expected = JSON.parse(json.toString())
-        assert.deepEqual(actual, expected)
+        const message=JSON.stringify(result)
+        assert.deepEqual(expected, actual, message)
       }))
     )
   })

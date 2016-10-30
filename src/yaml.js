@@ -15,8 +15,8 @@ const node = (n) => P.seq(
 )
 
 const yaml = (n) => 
-  indent(n, linebreak.atLeast(0).skip(P.optWhitespace).then(node(n))).map((v)=>{return {key:v[0], value:v[1]}})
-  .many().map((v) => v.reduce((res, arr) => {
+  indent(n, alt(space.skip(linebreak), linebreak, node(n).map((v)=>{return {key:v[0], value:v[1]}})))
+  .many().map((v) => v.filter((r)=>r.key).reduce((res, arr) => {
     return res[arr.key] = arr.value, res
   }, {}))
 

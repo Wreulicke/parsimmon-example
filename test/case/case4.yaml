@@ -1,7 +1,12 @@
 aaa:bbb
 aac:bbb
-bbb:
-  xxx:ccc
+bbb: 
+  xxx :ccc
+  
+  xxy: ddd
+  aaa: 
+       
+    bbb:ccc
 
-  xxy:ddd
-ccc:ddd
+ccc: 
+  ddd:xxx
