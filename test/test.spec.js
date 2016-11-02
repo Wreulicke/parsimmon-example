@@ -31,10 +31,16 @@ describe("yaml parser test", () => {
     it(`test case : ${path.basename(yaml)}`, () =>
       all(toPromise(fs.readFile, yaml), toPromise(fs.readFile, getJson(yaml)))
       .then(flat((yaml, json) => {
-        const result= parser.parse(yaml.toString()),actual =result.value
+        const result= parser.parse(yaml.toString()), actual =result.value
+        if(!result.status){
+          throw new Error(`
+          found: ${yaml.toString().substring(result.index.offset,result.index.offset+2)}
+          expected: ${JSON.stringify(result.expected)}
+          detail: ${JSON.stringify(result)}
+          `)
+        }
         const expected = JSON.parse(json.toString())
-        const message=JSON.stringify(result)
-        assert.deepEqual(expected, actual, message)
+        assert.deepEqual(expected, actual)
       }))
     )
   })

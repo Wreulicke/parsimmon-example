@@ -1,0 +1,22 @@
+class Program extends Node
+  static property
+  property = initialAssignee
+  constructor() ->
+    super()
+    @methodName()
+  methodName(xxx) ->
+    hogehoge
+
+const x=2
+let y=3
+let f= (a) ->
+  f(f) unless a
+
+const obj=
+  x:b
+  c:
+    test: -> console.log('test')
+    xxx:yyy
+
+console.log('test') if obj?.c?.test()
+
